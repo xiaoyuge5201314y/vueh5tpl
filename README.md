@@ -45,7 +45,8 @@ src //资源文件
         font //字体图标
         image //图片文件
         style //样式文件
-    components //存放组件
+    components //存放page私有组件
+    common //存放公共组件
     config //存放配置文件
         env.config.js //环境配置
         http.config.js //axios配置
@@ -53,10 +54,12 @@ src //资源文件
         router.config.js //动态添加路由
     router //vue路由
         index.js
+        guard.js //守卫
     store //vuex
         index.js
     utils //封装的工具库
     views //page页面
         Home.vue //主页
     main.js //入口文件
+vue.config.js //vue配置文件
 ```
