@@ -1,6 +1,6 @@
 // 引入axios
 import axios from '../config/http.config.js'
-
+import env from '../config/env.config'
 const requests = {};
 /**
  * 添加axios请求函数
@@ -16,20 +16,26 @@ function addApi(apiUrl, method = 'get') {
         return new Promise((resolve, reject) => {
             // 发起axios请求
             axios.request({
+                timeout: 1000,
+                // 前缀路径
+                baseURL: process.env.NODE_ENV == 'production' ? env.prod.baseUrl : env.dev.baseUrl,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
                 url: apiUrl,
                 method: method === 'get' ? 'get' : 'post',
                 ...{
-                    [method === 'get' ? params : data]: data,
+                    [method === 'get' ? 'params' : 'data']: data,
                 }
             }).then(result => {
                 // 请求成功
-                if (result.code == 200) {
+                if (result.data.code == 200) {
                     resolve(result);
                 } else
-                if (result.code == 900) {
+                if (result.data.code == 900) {
                     reject('错误...')
                 } else {
-                    reject(`未知错误${result}`)
+                    reject(`未知错误${JSON.stringify(result)}`)
                 }
                 // 失败
             }).catch(err => {
@@ -41,6 +47,6 @@ function addApi(apiUrl, method = 'get') {
     }
 }
 
-addApi('/login');
+addApi('/api/product/getListByCon');
 
 export default requests;

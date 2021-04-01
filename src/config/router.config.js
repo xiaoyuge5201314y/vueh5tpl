@@ -1,3 +1,5 @@
+import router from "../router";
+
 /**
  * 用来添加路由 
  * @param {String} name 路由名字
@@ -5,25 +7,28 @@
  * @returns 路由配置对象
  */
 function addRouter(name, config) {
-    const n = name.substr(0, 1).toUpperCase + name.substr(1)
+    name = name.toLowerCase();
+    const Name = name.substr(0, 1).toUpperCase() + name.substr(1)
     return {
         path: `/${name}`,
-        name: `${n}`,
-        components: {
-            component: () => import(`@/views/${n}.vue`)
+        name: `${Name}`,
+        component: () => import(`@/views/${Name}.vue`),
+        meta: {
+
         },
-        ...config
+        ...config,
     }
 }
 
 // 所有路由
 const routers = [];
-// 添加路由
-routers.push(addRouter('user', {
+
+const user = addRouter('user', {
     meta: {
         token: false
     }
-}));
+})
+routers.push(user)
 
 
 export default routers;

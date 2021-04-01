@@ -1,11 +1,11 @@
 // 开发环境
 const dev = {
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'http://learn.tx2.qrqy.net/',
 }
 
 // 生产环境
 const prod = {
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'http://learn.tx2.qrqy.net/',
 }
 
 export default {

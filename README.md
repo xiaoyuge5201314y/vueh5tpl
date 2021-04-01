@@ -45,6 +45,7 @@ src //资源文件
         font //字体图标
         image //图片文件
         style //样式文件
+            base.css //重置元素样式
     components //存放page私有组件
     common //存放公共组件
     config //存放配置文件
